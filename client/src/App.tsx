@@ -1,10 +1,15 @@
-import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Authen from "./routes/Authen";
+import Homepage from "./routes/Homepage";
 
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/auth" element={<Authen />} />
+        <Route path="/" element={<Homepage />} />
+      </Routes>
+    </Router>
   );
 }
 
