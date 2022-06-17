@@ -7,6 +7,7 @@ dotenv.config();
 
 import authRoute from "./routes/auth.js";
 import projectRoute from "./routes/project.js";
+import privateRoute from "./middlewares/privateRoute.js";
 
 const PORT = process.env.PORT || 8080;
 const DB_CONNECTION_URL = process.env.MONGODB_CONNECTION_URL;
@@ -17,7 +18,7 @@ app.use(express.json());
 
 // Route middleware
 app.use("/api/user", authRoute);
-app.use("/api/project", projectRoute);
+app.use("/api/project", privateRoute, projectRoute);
 
 // connect with database
 mongoose
