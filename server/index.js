@@ -8,6 +8,7 @@ dotenv.config();
 import authRoute from "./routes/auth.js";
 import projectRoute from "./routes/project.js";
 import taskRoute from "./routes/task.js";
+import commentRoute from "./routes/comment.js";
 import privateRoute from "./middlewares/privateRoute.js";
 
 const PORT = process.env.PORT || 8080;
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use("/api/user", authRoute);
 app.use("/api/project", privateRoute, projectRoute);
 app.use("/api/task", privateRoute, taskRoute);
+app.use("/api/comment", privateRoute, commentRoute);
 
 // connect with database
 mongoose

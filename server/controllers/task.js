@@ -3,7 +3,6 @@ import Task from "../models/Task.js";
 
 export const getTaskById = async (req, res) => {
   const { projectId } = req.params;
-  console.log(projectId);
   try {
     const data = await Task.find({ projectId: projectId });
     res.status(200).json(data);
