@@ -29,5 +29,5 @@ export const authLogin = async (req, res) => {
 
   // jwt
   const token = jwt.sign({ _id: user._id }, process.env.SECRET_TOKEN);
-  res.header("auth-token", token).send({ message: "login success" });
+  res.header("auth-token", token).send(token);
 };
