@@ -3,7 +3,7 @@ import Header from "../components/Header/Header";
 import Sidebar from "../components/Sidebar/Sidebar";
 
 function Homepage() {
-  const [isShowSidebar, setIsShowSidebar] = useState(true);
+  const [isShowSidebar, setIsShowSidebar] = useState(false);
 
   return (
     <>

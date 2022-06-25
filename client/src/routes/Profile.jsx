@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import Header from "../components/Header/Header";
+import Sidebar from "../components/Sidebar/Sidebar";
 
 function Profile() {
-  return <div>Profile</div>;
+  const [isShowSidebar, setIsShowSidebar] = useState(false);
+
+  return (
+    <>
+      <Header setIsShowSidebar={setIsShowSidebar} />
+      {isShowSidebar && <Sidebar setIsShowSidebar={setIsShowSidebar} />}
+    </>
+  );
 }
 
 export default Profile;
