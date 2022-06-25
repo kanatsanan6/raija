@@ -1,10 +1,10 @@
-import { useLocation } from "react-router";
 import SidebarItem from "./SidebarItem";
 
-function Sidebar() {
-  const location = useLocation();
-  const pathName = location.pathname;
-  console.log(pathName);
+function Sidebar({ setIsShowSidebar }) {
+  const closeSidebar = () => {
+    setIsShowSidebar(false);
+  };
+
   return (
     <div className="fixed top-0 flex h-screen w-screen">
       <div className="h-[100%] w-[280px] bg-white py-6">
@@ -13,10 +13,10 @@ function Sidebar() {
         </div>
         <hr className="mx-5 mt-3" />
         <p className="mt-1 mb-3 px-5 text-sm text-gray-500">Page</p>
-        <SidebarItem itemName="Dashboard" itemLogo="/images/dashboard-logo.svg" isSelected={pathName === "/"} />
-        <SidebarItem itemName="Profile" itemLogo="/images/profile-logo.svg" isSelected={pathName === "/profile"} />
+        <SidebarItem itemName="Dashboard" itemLogo="/images/dashboard-logo.svg" pathName="/" />
+        <SidebarItem itemName="Profile" itemLogo="/images/profile-logo.svg" pathName="/profile" />
       </div>
-      <div className="flex-1 bg-black bg-opacity-30" />
+      <div className="flex-1 bg-black bg-opacity-30" onClick={closeSidebar} />
     </div>
   );
 }
