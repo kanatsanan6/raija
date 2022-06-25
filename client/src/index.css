@@ -8,3 +8,41 @@ body {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.slideIn {
+  animation: slideIn 0.5s forwards;
+}
+.slideOut {
+  animation: slideOut 0.5s forwards;
+}
+
+.appearIn {
+  animation: appearIn 1s forwards;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(-900px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-900px);
+  }
+}
+
+@keyframes appearIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
