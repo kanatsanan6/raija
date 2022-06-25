@@ -9,7 +9,6 @@ function Sidebar() {
     <div className="fixed top-0 flex h-screen w-screen">
       <div className="h-[100%] w-[280px] bg-white py-6">
         <div className="flex w-[10%] items-center px-5">
-          <img src="/images/raija-logo.svg" alt="" className="mr-2" />
           <h4 className="text-xl font-semibold leading-7 tracking-wider text-[#253858]">RAIJA</h4>
         </div>
         <hr className="mx-5 mt-3" />
