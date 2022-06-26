@@ -13,7 +13,7 @@ body {
   animation: slideIn 0.5s forwards;
 }
 .slideOut {
-  animation: slideOut 0.5s forwards;
+  animation: slideOut 1s forwards;
 }
 
 .fadeIn {
