@@ -16,8 +16,12 @@ body {
   animation: slideOut 0.5s forwards;
 }
 
-.appearIn {
-  animation: appearIn 1s forwards;
+.fadeIn {
+  animation: fadeIn 1s forwards;
+}
+
+.fadeOut {
+  animation: fadeOut 0.5s forwards;
 }
 
 @keyframes slideIn {
@@ -38,11 +42,20 @@ body {
   }
 }
 
-@keyframes appearIn {
+@keyframes fadeIn {
   0% {
     opacity: 0;
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
