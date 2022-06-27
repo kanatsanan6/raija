@@ -1,6 +1,7 @@
 import { Pagination } from "@mui/material";
 import { useEffect } from "react";
 import { useState } from "react";
+import { getProjects } from "../actions/projects";
 import Header from "../components/Header/Header";
 import Menu from "../components/Menu/Menu";
 import ProjectCard from "../components/ProjectCard/ProjectCard";
@@ -8,21 +9,21 @@ import Sidebar from "../components/Sidebar/Sidebar";
 import { useStateValue } from "../context/StateProvider";
 
 const MAX_PROJECT = 12;
-const project = 13;
 
 function Homepage() {
-  const numberOfPage = Math.ceil(project / MAX_PROJECT);
   const [isShowSidebar, setIsShowSidebar] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState("all");
-  const [displayProject, setDisplayProject] = useState([]);
 
-  const [, dispatch] = useStateValue();
+  const [{ projects }, dispatch] = useStateValue();
+  const numberOfPage = Math.ceil(projects.length / MAX_PROJECT);
 
   useEffect(() => {
-    dispatch({
-      type: "",
-    });
+    getProjects(dispatch);
   }, []);
+
+  useEffect(() => {
+    console.log(projects.projects);
+  }, [projects]);
 
   const selectAllProject = () => {
     setSelectedMenu("all");
@@ -71,12 +72,9 @@ function Homepage() {
         <hr className="mb-5" />
         <div className="flex h-[100%] flex-col items-center bg-[#F1F1F1]">
           <div className="grid h-[90%] content-start gap-5 rounded-lg  p-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
+            {projects.projects.map((project) => {
+              return <ProjectCard project={project} key={project._id} />;
+            })}
           </div>
           <Pagination count={numberOfPage} variant="outlined" />
         </div>

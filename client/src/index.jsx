@@ -7,9 +7,6 @@ import { reducer, initialState } from "./context/reducers/index";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-console.log(reducer);
-console.log(initialState);
-
 root.render(
   <React.StrictMode>
     <StateProvider reducer={reducer} initialState={initialState}>

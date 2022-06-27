@@ -20,7 +20,7 @@ app.use(express.json());
 
 // Route middleware
 app.use("/api/user", authRoute);
-app.use("/api/project", privateRoute, projectRoute);
+app.use("/api/project", projectRoute);
 app.use("/api/task", privateRoute, taskRoute);
 app.use("/api/comment", privateRoute, commentRoute);
 
