@@ -11,19 +11,16 @@ import { useStateValue } from "../context/StateProvider";
 const MAX_PROJECT = 12;
 
 function Homepage() {
+  const [page, setPage] = useState(1);
   const [isShowSidebar, setIsShowSidebar] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState("all");
 
   const [{ projects }, dispatch] = useStateValue();
-  const numberOfPage = Math.ceil(projects.length / MAX_PROJECT);
+  const numberOfPage = Math.ceil(projects.projects.length / MAX_PROJECT);
 
   useEffect(() => {
     getProjects(dispatch);
-  }, []);
-
-  useEffect(() => {
-    console.log(projects.projects);
-  }, [projects]);
+  }, [dispatch]);
 
   const selectAllProject = () => {
     setSelectedMenu("all");
@@ -31,6 +28,10 @@ function Homepage() {
 
   const selectedYourMenu = () => {
     setSelectedMenu("your");
+  };
+
+  const handleChange = (event, value) => {
+    setPage(value);
   };
 
   return (
@@ -70,13 +71,15 @@ function Homepage() {
           </div>
         </div>
         <hr className="mb-5" />
-        <div className="flex h-[100%] flex-col items-center bg-[#F1F1F1]">
-          <div className="grid h-[90%] content-start gap-5 rounded-lg  p-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {projects.projects.map((project) => {
-              return <ProjectCard project={project} key={project._id} />;
+        <div className="flex h-auto min-h-[630px] flex-col items-center justify-between rounded-lg  bg-[#F1F1F1] pb-5">
+          <div className="grid content-start gap-5 p-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {projects.projects.map((project, index) => {
+              if (12 * (page - 1) <= index && 12 * page > index) {
+                return <ProjectCard project={project} key={project._id} />;
+              }
             })}
           </div>
-          <Pagination count={numberOfPage} variant="outlined" />
+          <Pagination page={page} count={numberOfPage} variant="outlined" onChange={handleChange} />
         </div>
       </div>
     </div>
