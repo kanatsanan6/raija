@@ -1,12 +1,18 @@
+import { Pagination } from "@mui/material";
 import { useState } from "react";
 import Header from "../components/Header/Header";
 import Menu from "../components/Menu/Menu";
 import ProjectCard from "../components/ProjectCard/ProjectCard";
 import Sidebar from "../components/Sidebar/Sidebar";
 
+const MAX_PROJECT = 12;
+const project = 13;
+
 function Homepage() {
+  const numberOfPage = Math.ceil(project / MAX_PROJECT);
   const [isShowSidebar, setIsShowSidebar] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState("all");
+  const [displayProject, setDisplayProject] = useState([]);
 
   const selectAllProject = () => {
     setSelectedMenu("all");
@@ -53,13 +59,16 @@ function Homepage() {
           </div>
         </div>
         <hr className="mb-5" />
-        <div className="grid h-[100%] content-start gap-5 rounded-lg bg-[#F1F1F1] p-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
+        <div className="flex h-[100%] flex-col items-center bg-[#F1F1F1]">
+          <div className="grid h-[90%] content-start gap-5 rounded-lg  p-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <ProjectCard />
+            <ProjectCard />
+            <ProjectCard />
+            <ProjectCard />
+            <ProjectCard />
+            <ProjectCard />
+          </div>
+          <Pagination count={numberOfPage} variant="outlined" />
         </div>
       </div>
     </div>
