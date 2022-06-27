@@ -1,9 +1,11 @@
 import { Pagination } from "@mui/material";
+import { useEffect } from "react";
 import { useState } from "react";
 import Header from "../components/Header/Header";
 import Menu from "../components/Menu/Menu";
 import ProjectCard from "../components/ProjectCard/ProjectCard";
 import Sidebar from "../components/Sidebar/Sidebar";
+import { useStateValue } from "../context/StateProvider";
 
 const MAX_PROJECT = 12;
 const project = 13;
@@ -13,6 +15,14 @@ function Homepage() {
   const [isShowSidebar, setIsShowSidebar] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState("all");
   const [displayProject, setDisplayProject] = useState([]);
+
+  const [, dispatch] = useStateValue();
+
+  useEffect(() => {
+    dispatch({
+      type: "",
+    });
+  }, []);
 
   const selectAllProject = () => {
     setSelectedMenu("all");
