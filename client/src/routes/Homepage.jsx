@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "../components/Header/Header";
 import Menu from "../components/Menu/Menu";
+import ProjectCard from "../components/ProjectCard/ProjectCard";
 import Sidebar from "../components/Sidebar/Sidebar";
 
 function Homepage() {
@@ -11,16 +12,16 @@ function Homepage() {
     setSelectedMenu("all");
   };
 
-  const selectYourProject = () => {
+  const selectedYourMenu = () => {
     setSelectedMenu("your");
   };
 
   return (
-    <>
+    <div className="flex h-screen flex-1 flex-col">
       <Header setIsShowSidebar={setIsShowSidebar} />
       {isShowSidebar && <Sidebar setIsShowSidebar={setIsShowSidebar} />}
 
-      <div className="px-5 py-7 md:px-10 lg:px-20">
+      <div className="w-[100%] px-5 py-7 md:px-10 lg:px-16">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <p className="text-md font-light text-gray-400 sm:text-lg">RAIJA</p>
@@ -40,7 +41,7 @@ function Homepage() {
         <div className="flex items-start justify-between">
           <div className="flex items-baseline">
             <Menu menuTitle="All Projects" isSelected={"all" === selectedMenu} onClick={selectAllProject} />
-            <Menu menuTitle="Your Projects" isSelected={"your" === selectedMenu} onClick={selectYourProject} />
+            <Menu menuTitle="Your Projects" isSelected={"your" === selectedMenu} onClick={selectedYourMenu} />
           </div>
           <div className="flex items-center rounded-md border border-gray-300 p-1">
             <img src="/images/search.svg" alt="" className="mr-2 ml-2 w-4" />
@@ -51,9 +52,17 @@ function Homepage() {
             />
           </div>
         </div>
-        <hr />
+        <hr className="mb-5" />
+        <div className="grid h-[100%] content-start gap-5 rounded-lg bg-[#F1F1F1] p-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <ProjectCard />
+          <ProjectCard />
+          <ProjectCard />
+          <ProjectCard />
+          <ProjectCard />
+          <ProjectCard />
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 
