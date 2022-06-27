@@ -77,6 +77,7 @@ function Homepage() {
               if (12 * (page - 1) <= index && 12 * page > index) {
                 return <ProjectCard project={project} key={project._id} />;
               }
+              return null;
             })}
           </div>
           <Pagination page={page} count={numberOfPage} variant="outlined" onChange={handleChange} />
