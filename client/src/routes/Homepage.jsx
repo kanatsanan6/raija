@@ -51,7 +51,7 @@ function Homepage() {
 
         <div className="flex items-center justify-between py-5">
           <h3 className="text-2xl font-semibold sm:text-3xl">Dashboard</h3>
-          <button className="text-md rounded-md bg-[#0052CC] px-4 py-2 font-medium text-white sm:py-2 sm:px-7 sm:text-lg">
+          <button className="text-md rounded-md bg-[#0052CC] px-4 py-2 font-medium text-white hover:opacity-90 sm:py-2 sm:px-7 sm:text-lg">
             + New
           </button>
         </div>
