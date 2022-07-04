@@ -2,8 +2,10 @@ import { Pagination } from "@mui/material";
 import { useEffect } from "react";
 import { useState } from "react";
 import { getProjects } from "../actions/projects";
+import { getUsers } from "../actions/users";
 import Header from "../components/Header/Header";
 import Menu from "../components/Menu/Menu";
+import NewProject from "../components/NewProject/NewProject";
 import ProjectCard from "../components/ProjectCard/ProjectCard";
 import Sidebar from "../components/Sidebar/Sidebar";
 import { useStateValue } from "../context/StateProvider";
@@ -20,6 +22,7 @@ function Homepage() {
 
   useEffect(() => {
     getProjects(dispatch);
+    getUsers(dispatch);
   }, [dispatch]);
 
   const selectAllProject = () => {
@@ -83,6 +86,7 @@ function Homepage() {
           <Pagination page={page} count={numberOfPage} variant="outlined" onChange={handleChange} />
         </div>
       </div>
+      <NewProject />
     </div>
   );
 }

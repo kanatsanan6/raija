@@ -1,6 +1,15 @@
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 
+export const getUsers = async (req, res) => {
+  try {
+    const data = await User.find();
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}
+
 export const generateToken = async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   if (!user) {
