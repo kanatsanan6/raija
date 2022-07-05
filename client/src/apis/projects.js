@@ -10,3 +10,8 @@ export const getProjects = async () => {
     console.log(error);
   }
 };
+
+export const createProject = async (newProject) => {
+  const data = axios.post(url, newProject);
+  return data
+}

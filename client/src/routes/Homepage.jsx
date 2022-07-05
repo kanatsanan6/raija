@@ -16,6 +16,7 @@ function Homepage() {
   const [page, setPage] = useState(1);
   const [isShowSidebar, setIsShowSidebar] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState("all");
+  const [isShowNewProject, setIsShowNewProject] = useState(false);
 
   const [{ projects }, dispatch] = useStateValue();
   const numberOfPage = Math.ceil(projects.projects.length / MAX_PROJECT);
@@ -38,7 +39,7 @@ function Homepage() {
   };
 
   return (
-    <div className="flex h-screen flex-1 flex-col">
+    <div className={`flex h-screen flex-1 flex-col ${setIsShowNewProject && "overflow-y-hidden"}`}>
       <Header setIsShowSidebar={setIsShowSidebar} />
       {isShowSidebar && <Sidebar setIsShowSidebar={setIsShowSidebar} />}
 
@@ -54,7 +55,10 @@ function Homepage() {
 
         <div className="flex items-center justify-between py-5">
           <h3 className="text-2xl font-semibold sm:text-3xl">Dashboard</h3>
-          <button className="text-md rounded-md bg-[#0052CC] px-4 py-2 font-medium text-white hover:opacity-90 sm:py-2 sm:px-7 sm:text-lg">
+          <button
+            className="text-md rounded-md bg-[#0052CC] px-4 py-2 font-medium text-white hover:opacity-90 sm:py-2 sm:px-7 sm:text-lg"
+            onClick={() => setIsShowNewProject(true)}
+          >
             + New
           </button>
         </div>
@@ -86,7 +90,7 @@ function Homepage() {
           <Pagination page={page} count={numberOfPage} variant="outlined" onChange={handleChange} />
         </div>
       </div>
-      <NewProject />
+      {isShowNewProject && <NewProject setIsShowNewProject={setIsShowNewProject} />}
     </div>
   );
 }
