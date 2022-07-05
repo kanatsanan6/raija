@@ -1,6 +1,7 @@
 import { Avatar } from "@mui/material";
 import { useEffect, useRef } from "react";
 import { useStateValue } from "../../context/StateProvider";
+import { stringToHslColor } from "../../utils/colors/letterColor";
 import { ClickOutSide } from "../../utils/function/handleClickOutside";
 
 function MemberDropDown({ filterInput, setFilterInput, members, setMembers, setShowMemberDropDown, inputRef }) {
@@ -31,7 +32,9 @@ function MemberDropDown({ filterInput, setFilterInput, members, setMembers, setS
             className="flex cursor-pointer items-center rounded-md hover:bg-[#ebf3fe91]"
             onClick={() => addMember(user)}
           >
-            <Avatar sx={{ transform: "scale(0.7)" }}>{user.name[0].toUpperCase()}</Avatar>
+            <Avatar sx={{ transform: "scale(0.7)", bgcolor: stringToHslColor(user.name) }}>
+              {user.name[0].toUpperCase()}
+            </Avatar>
             <div className="flex-1">
               <h3 className="text-xs">{user.name}</h3>
               <h4 className="text-xs text-gray-600">{user.email}</h4>
