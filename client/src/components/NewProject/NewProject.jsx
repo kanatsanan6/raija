@@ -41,6 +41,12 @@ function NewProject({ setIsShowNewProject }) {
         ref={formRef}
       >
         <div className="mb-3 flex h-[100%] flex-1 flex-col">
+          <img
+            src="\images\close.svg"
+            alt=""
+            className="mr-2 w-3 cursor-pointer"
+            onClick={() => setIsShowNewProject(false)}
+          />
           <h4 className="mb-5 text-center text-2xl font-semibold">New Project</h4>
           <h5 className="mb-1 text-sm">Project Name</h5>
           <input
@@ -84,7 +90,7 @@ function NewProject({ setIsShowNewProject }) {
           )}
           <div
             className={`hide-scroll relative ${
-              showMemberDropDown ? "bottom-44" : "bottom-0"
+              showMemberDropDown ? "bottom-44" : "bottom-2"
             } flex max-h-[200px] min-h-[200px] flex-1 flex-col overflow-y-scroll`}
           >
             {showMembers.map((user) => {
@@ -94,7 +100,7 @@ function NewProject({ setIsShowNewProject }) {
         </div>
         <button
           className={`relative ${
-            showMemberDropDown ? "bottom-[47px]" : "bottom-0"
+            showMemberDropDown ? "bottom-[47.5px]" : "bottom-4"
           } rounded-lg bg-[#085DD7] py-2 font-semibold text-white`}
           onClick={onSubmitCreateProject}
         >
