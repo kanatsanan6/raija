@@ -4,12 +4,15 @@ import { useStateValue } from "../../context/StateProvider";
 import { stringToHslColor } from "../../utils/colors/letterColor";
 import { ClickOutSide } from "../../utils/function/handleClickOutside";
 
+const USER_ID = "62c2fc913fe9c510a3177f21";
+
 function MemberDropDown({ filterInput, setFilterInput, members, setMembers, setShowMemberDropDown, inputRef }) {
   const [{ users }] = useStateValue();
   const filterUsers = users.users.filter((user) => {
-    if (!members.includes(user._id) && filterInput === "") return users.users;
+    if (!members.includes(user._id) && user._id !== USER_ID && filterInput === "") return users.users;
     if (
       !members.includes(user._id) &&
+      user._id !== USER_ID &&
       (user.email.toLowerCase().includes(filterInput.toLowerCase()) ||
         user.name.toLowerCase().includes(filterInput.toLowerCase()))
     )
