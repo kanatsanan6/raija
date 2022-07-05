@@ -9,6 +9,7 @@ import NewProject from "../components/NewProject/NewProject";
 import ProjectCard from "../components/ProjectCard/ProjectCard";
 import Sidebar from "../components/Sidebar/Sidebar";
 import { useStateValue } from "../context/StateProvider";
+import { search } from "../utils/function/search";
 
 const MAX_PROJECT = 12;
 
@@ -19,13 +20,16 @@ function Homepage() {
   const [isShowSidebar, setIsShowSidebar] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState("all");
   const [isShowNewProject, setIsShowNewProject] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
 
-  const [{ projects }, dispatch] = useStateValue();
-  const displayProject =
+  const [{ projects, users }, dispatch] = useStateValue();
+  const filterProject =
     selectedMenu === "all"
       ? projects.projects
       : projects.projects.filter((project) => ([project.owner, ...project.members].includes(USER_ID) ? project : null));
-  const numberOfPage = Math.ceil(displayProject.length / MAX_PROJECT);
+  const numberOfPage = Math.ceil(filterProject.length / MAX_PROJECT);
+
+  const displayProject = filterProject.filter((project) => search(project, searchInput, users.users));
 
   useEffect(() => {
     getProjects(dispatch);
@@ -45,7 +49,7 @@ function Homepage() {
   };
 
   return (
-    <div className={`flex h-screen flex-1 flex-col ${setIsShowNewProject && "overflow-y-hidden"}`}>
+    <div className={`flex h-screen flex-1 flex-col overflow-y-auto`}>
       <Header setIsShowSidebar={setIsShowSidebar} />
       {isShowSidebar && <Sidebar setIsShowSidebar={setIsShowSidebar} />}
 
@@ -80,6 +84,7 @@ function Homepage() {
               type="text"
               placeholder="Search"
               className="h-3 w-20 text-xs focus:outline-0 sm:h-6 sm:w-48 sm:text-base md:w-28"
+              onChange={(e) => setSearchInput(e.target.value)}
             />
           </div>
         </div>
