@@ -7,7 +7,7 @@ function Header({ setIsShowSidebar }) {
   };
 
   return (
-    <div className="z-1 sticky top-0 flex h-16 w-[100%] items-center justify-between bg-white shadow-sm">
+    <div className="z-10 sticky top-0 flex h-16 w-[100%] items-center justify-between bg-white shadow-sm">
       <div className="flex w-[10%] items-center">
         <img src="/images/option.svg" alt="" className="mr-4 ml-5 cursor-pointer sm:ml-10" onClick={openSidebar} />
         <img src="/images/raija-logo.svg" alt="" className="mr-2" />

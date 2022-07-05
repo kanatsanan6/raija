@@ -15,7 +15,7 @@ function ProjectCard({ project }) {
       <AvatarGroup sx={{ transform: "scale(0.8)", marginRight: "-20px" }} max={4}>
         {projectMember.map((member, index) => {
           return (
-            <Avatar key={index} sx={{ bgcolor: stringToHslColor(member.name) }}>
+            <Avatar key={index} sx={{ bgcolor: stringToHslColor(member.name) }} style={{ zIndex: 1 }}>
               {member.name[0].toUpperCase()}
             </Avatar>
           );

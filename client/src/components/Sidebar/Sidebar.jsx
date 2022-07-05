@@ -14,7 +14,7 @@ function Sidebar({ setIsShowSidebar }) {
   };
 
   return (
-    <div className="fixed top-0 flex h-screen w-screen">
+    <div className="fixed top-0 z-20 flex h-screen w-screen">
       <div className="h-[100%] w-[280px] bg-white py-6">
         <div className={`${sidebarAnimationStyle}`}>
           <div className="flex w-[10%] items-center px-5">
