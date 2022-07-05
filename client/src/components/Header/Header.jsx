@@ -1,4 +1,5 @@
 import Avatar from "@mui/material/Avatar";
+import { stringToHslColor } from "../../utils/colors/letterColor";
 
 function Header({ setIsShowSidebar }) {
   const openSidebar = () => {
@@ -14,7 +15,7 @@ function Header({ setIsShowSidebar }) {
       </div>
 
       <div className="mr-5 sm:mr-10">
-        <Avatar>K</Avatar>
+        <Avatar sx={{ bgcolor: stringToHslColor("Kanatsanan Janpakdee") }}>K</Avatar>
       </div>
     </div>
   );

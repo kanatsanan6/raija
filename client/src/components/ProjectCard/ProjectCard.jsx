@@ -1,5 +1,6 @@
 import { Avatar, AvatarGroup } from "@mui/material";
 import { useStateValue } from "../../context/StateProvider";
+import { stringToHslColor } from "../../utils/colors/letterColor";
 
 function ProjectCard({ project }) {
   const [{ users }] = useStateValue();
@@ -13,7 +14,11 @@ function ProjectCard({ project }) {
       <h4 className="mb-2 text-sm text-[#3D3D3D] line-clamp-3">{projectDescription}</h4>
       <AvatarGroup sx={{ transform: "scale(0.8)", marginRight: "-20px" }} max={4}>
         {projectMember.map((member, index) => {
-          return <Avatar key={index}>{member.name[0].toUpperCase()}</Avatar>;
+          return (
+            <Avatar key={index} sx={{ bgcolor: stringToHslColor(member.name) }}>
+              {member.name[0].toUpperCase()}
+            </Avatar>
+          );
         })}
       </AvatarGroup>
     </div>
