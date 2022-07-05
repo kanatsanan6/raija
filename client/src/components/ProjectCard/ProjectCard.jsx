@@ -6,8 +6,6 @@ function ProjectCard({ project }) {
   const projectName = project.projectName;
   const projectDescription = project.projectDescription;
   const projectMember = users.users.filter((user) => project.members.includes(user._id));
-  console.log(project.members);
-  console.log(projectMember);
 
   return (
     <div className="flex h-40 w-[100%] flex-col justify-between rounded-lg bg-white p-5">
