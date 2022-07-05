@@ -6,11 +6,16 @@ import { ClickOutSide } from "../../utils/function/handleClickOutside";
 
 function MemberDropDown({ filterInput, setFilterInput, members, setMembers, setShowMemberDropDown, inputRef }) {
   const [{ users }] = useStateValue();
-  const allUsers = users.users;
-  const filterUsers =
-    filterInput === ""
-      ? allUsers
-      : allUsers.filter((user) => (user.email.includes(filterInput) || user.name.includes(filterInput) ? user : null));
+  const filterUsers = users.users.filter((user) => {
+    if (!members.includes(user._id) && filterInput === "") return users.users;
+    if (
+      !members.includes(user._id) &&
+      (user.email.toLowerCase().includes(filterInput.toLowerCase()) ||
+        user.name.toLowerCase().includes(filterInput.toLowerCase()))
+    )
+      return user;
+    return null;
+  });
 
   const addMember = (user) => {
     const newMembers = [...members];
