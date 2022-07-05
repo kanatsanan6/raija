@@ -13,7 +13,7 @@ import { search } from "../utils/function/search";
 
 const MAX_PROJECT = 12;
 
-const USER_ID = "62c2fcc03fe9c510a3177f23";
+const USER_ID = "62c2fc913fe9c510a3177f21";
 
 function Homepage() {
   const [page, setPage] = useState(1);
@@ -46,6 +46,16 @@ function Homepage() {
 
   const handleChange = (event, value) => {
     setPage(value);
+  };
+
+  const compareProjectName = (a, b) => {
+    if (a.projectName.toLowerCase() < b.projectName.toLowerCase()) {
+      return -1;
+    }
+    if (a.projectName.toLowerCase() > b.projectName.toLowerCase()) {
+      return 1;
+    }
+    return 0;
   };
 
   return (
@@ -91,7 +101,7 @@ function Homepage() {
         <hr className="mb-5" />
         <div className="flex h-auto min-h-[630px] flex-col items-center justify-between rounded-lg  bg-[#F1F1F1] pb-5">
           <div className="grid w-[100%] content-start gap-5 p-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {displayProject.map((project, index) => {
+            {displayProject.sort(compareProjectName).map((project, index) => {
               if (12 * (page - 1) <= index && 12 * page > index) {
                 return <ProjectCard project={project} key={project._id} />;
               }
